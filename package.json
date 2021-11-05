@@ -1,0 +1,37 @@
+{
+  "name": "minimize-js",
+  "description": "Minimize your files without making a bundle",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "tsc --watch",
+    "test": "jest",
+    "debug": "node --inspect ./lib/index.js lib",
+    "build": "tsc -b -v -f"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Randagio13/minimize-js.git"
+  },
+  "keywords": [
+    "minimize-js",
+    "minimize"
+  ],
+  "author": "Alessandro Casazza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Randagio13/minimize-js/issues"
+  },
+  "homepage": "https://github.com/Randagio13/minimize-js#readme",
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/node": "^16.11.6",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "commander": "^8.3.0",
+    "glob": "^7.2.0",
+    "pretty-bytes": "^5.6.0",
+    "terser": "^5.9.0"
+  }
+}
