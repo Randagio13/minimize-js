@@ -2,6 +2,8 @@
 
 # Minimize JS
 
+### Minimize your files without making a bundle
+
 [![NPM](https://nodei.co/npm/minimize-js.png?compact=true)](https://nodei.co/npm/minimize-js/)
 <br />
 [![](https://img.shields.io/npm/dt/minimize-js.svg?style=flat-square)](https://www.npmjs.com/package/minimize-js)
