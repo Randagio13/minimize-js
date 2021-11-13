@@ -26,7 +26,7 @@ To get started with this library, you need to install it and add it to your proj
 
 ### Installation
 
-Countries States Cities Service is available as an npm package.
+Minimize JS is available as an npm package.
 
 ```bash
 # npm
