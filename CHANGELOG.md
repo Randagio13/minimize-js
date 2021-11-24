@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/Randagio13/minimize-js/compare/v1.1.0...v1.1.1) (2021-11-24)
+
+
+### Bug Fixes
+
+* Remove white spaces ([ef3bee8](https://github.com/Randagio13/minimize-js/commit/ef3bee88b80aeedacfc566267de8cc19d43be1fd))
+
 # [1.1.0](https://github.com/Randagio13/minimize-js/compare/v1.0.0...v1.1.0) (2021-11-24)
 
 
