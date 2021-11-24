@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Randagio13/minimize-js/compare/v1.0.0...v1.1.0) (2021-11-24)
+
+
+### Features
+
+* Minify files by esbuild ([3baae63](https://github.com/Randagio13/minimize-js/commit/3baae63609c5a55e8fdc18da38dc586b8aa8702f))
+
 # 1.0.0 (2021-11-07)
 
 
