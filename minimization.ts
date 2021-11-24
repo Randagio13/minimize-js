@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs'
-import { transform } from 'esbuild'
+import { transformSync } from 'esbuild'
 const Bar = require('progress-barjs')
 
 type Opts = {
@@ -8,9 +8,7 @@ type Opts = {
 
 export async function minimization(files: string[], opts: Opts) {
   const { encoding = 'utf8' } = opts
-  const filesFiltered = files.filter(
-    (f) => f.endsWith('.js') || f.endsWith('.json')
-  )
+  const filesFiltered = files.filter((f) => f.endsWith('.js'))
   const bar = Bar({
     label: 'Minimize JS',
     info: 'Processing',
@@ -19,14 +17,18 @@ export async function minimization(files: string[], opts: Opts) {
   let i = 0
   let timer = setInterval(async () => {
     const file = filesFiltered[i]
-    const loader = file?.endsWith('js') ? 'js' : 'json'
     if (file) {
       const content = readFileSync(file, { encoding })
-      const { code } = await transform(content, {
-        loader,
+      const { code } = transformSync(content, {
         minify: true,
       })
-      code && writeFileSync(file, code.replaceAll(/\n/g, ''), { encoding })
+      if (code) {
+        const c =
+          code.search('##!/usr/bin/env') !== -1
+            ? code.replaceAll(/\n/g, '')
+            : code.trim()
+        writeFileSync(file, c, { encoding })
+      }
     }
     bar.tick('Tick number ' + i)
     if (bar.complete) {
