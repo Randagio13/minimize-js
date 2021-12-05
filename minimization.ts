@@ -4,10 +4,15 @@ const Bar = require('progress-barjs')
 
 type Opts = {
   encoding: 'utf8'
+  minifyWhitespace?: boolean
+  minifyIdentifiers?: boolean
+  minifySyntax?: boolean
 }
 
 export async function minimization(files: string[], opts: Opts) {
-  const { encoding = 'utf8' } = opts
+  const { encoding = 'utf8', ...transformOpts } = opts
+  const options =
+    Object.keys(transformOpts).length > 0 ? transformOpts : { minify: true }
   const filesFiltered = files.filter((f) => f.endsWith('.js'))
   const bar = Bar({
     label: 'Minimize JS',
@@ -19,9 +24,7 @@ export async function minimization(files: string[], opts: Opts) {
     const file = filesFiltered[i]
     if (file) {
       const content = readFileSync(file, { encoding })
-      const { code } = transformSync(content, {
-        minify: true,
-      })
+      const { code } = transformSync(content, options)
       if (code) {
         const c =
           code.search('##!/usr/bin/env') !== -1
