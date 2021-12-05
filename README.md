@@ -14,6 +14,7 @@
 
 1. [Getting started](#getting-started)
    - [Installation](#installation)
+   - [Options](#options)
 2. [Usage](#usage)
 3. [Contributors](#contributors)
 4. [Need help](#need-help)
@@ -34,6 +35,16 @@ npm install minimize-js -D
 
 # yarn
 yarn add minimize-js -D
+```
+
+### Options
+
+Minimize JS contains all options by default.
+
+```bash
+ -w --minifyWhitespace     It only removes whitespace characters
+ -i --minifyIdentifiers    It only transforms the identifiers
+ -s --minifySyntax         It only transforms the syntax
 ```
 
 ## Usage

@@ -7,14 +7,24 @@ const encoding = 'utf8'
 const program = new Command()
 
 async function getFiles(directory: string) {
+  const options = program.opts()
   if (directory) {
     const files = glob.sync(`${directory}/**`, {})
-    await minimization(files, { encoding })
+    await minimization(files, { encoding, ...options })
   }
 }
 
 async function run() {
   program.argument('<directory>', 'your files directory').action(getFiles)
+  program.option(
+    '-w, --minifyWhitespace',
+    'It only removes whitespace characters'
+  )
+  program.option(
+    '-i, --minifyIdentifiers',
+    'It only transforms the identifiers'
+  )
+  program.option('-s, --minifySyntax', 'It only transforms the syntax')
   await program.parseAsync()
 }
 
