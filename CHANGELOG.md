@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Randagio13/minimize-js/compare/v1.1.1...v1.2.0) (2021-12-05)
+
+
+### Features
+
+* Add minify options ([3a30462](https://github.com/Randagio13/minimize-js/commit/3a30462a66b68f514a8568da9d355384253d21db))
+
 ## [1.1.1](https://github.com/Randagio13/minimize-js/compare/v1.1.0...v1.1.1) (2021-11-24)
 
 
