@@ -40,7 +40,6 @@ export async function minimization(files: string[], opts: Opts) {
             ? code.replaceAll(/\n/g, '')
             : code.trim()
         if (isDeclarationFile) c = c.replaceAll('#!/usr/bin/env node', '')
-        console.dir(c)
         writeFileSync(file, c, { encoding })
       }
     }
