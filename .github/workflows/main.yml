@@ -14,7 +14,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 15
+          node-version: 17
       - name: Install dependencies
         run: npm i
       - name: Run package
