@@ -25,6 +25,10 @@ async function run() {
     'It only transforms the identifiers'
   )
   program.option('-s, --minifySyntax', 'It only transforms the syntax')
+  program.option(
+    '-d, --minifyDeclaration',
+    'It only transforms the declaration syntax'
+  )
   await program.parseAsync()
 }
 

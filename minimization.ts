@@ -1,19 +1,25 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { transformSync } from 'esbuild'
+import { createMinifier } from 'dts-minify'
+import * as ts from 'typescript'
 const Bar = require('progress-barjs')
+const minifier = createMinifier(ts)
 
 type Opts = {
   encoding: 'utf8'
   minifyWhitespace?: boolean
   minifyIdentifiers?: boolean
   minifySyntax?: boolean
+  minifyDeclaration?: boolean
 }
 
 export async function minimization(files: string[], opts: Opts) {
-  const { encoding = 'utf8', ...transformOpts } = opts
+  const { encoding = 'utf8', minifyDeclaration, ...transformOpts } = opts
   const options =
     Object.keys(transformOpts).length > 0 ? transformOpts : { minify: true }
-  const filesFiltered = files.filter((f) => f.endsWith('.js'))
+  const filesFiltered = files.filter(
+    (f) => f.endsWith('.js') || (minifyDeclaration && f.endsWith('.d.ts'))
+  )
   const bar = Bar({
     label: 'Minimize JS',
     info: 'Processing',
@@ -23,13 +29,18 @@ export async function minimization(files: string[], opts: Opts) {
   let timer = setInterval(async () => {
     const file = filesFiltered[i]
     if (file) {
+      const isDeclarationFile = minifyDeclaration && file.endsWith('.d.ts')
       const content = readFileSync(file, { encoding })
-      const { code } = transformSync(content, options)
+      const { code } = isDeclarationFile
+        ? { code: minifier.minify(content) }
+        : transformSync(content, options)
       if (code) {
-        const c =
+        let c =
           code.search('##!/usr/bin/env') !== -1
             ? code.replaceAll(/\n/g, '')
             : code.trim()
+        if (isDeclarationFile) c = c.replaceAll('#!/usr/bin/env node', '')
+        console.dir(c)
         writeFileSync(file, c, { encoding })
       }
     }
