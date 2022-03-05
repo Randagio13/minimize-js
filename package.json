@@ -15,9 +15,9 @@
   "scripts": {
     "start": "tsc --watch",
     "test": "jest",
-    "debug": "node --inspect ./lib/index.js lib -w -s",
+    "debug": "node --inspect ./lib/index.js lib -w -s -d",
     "build": "tsc -b -v -f",
-    "postbuild": "node ./lib/index.js lib -w -s"
+    "postbuild": "node ./lib/index.js lib -w -s -d"
   },
   "repository": {
     "type": "git",
