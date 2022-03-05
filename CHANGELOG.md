@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Randagio13/minimize-js/compare/v1.2.0...v1.3.0) (2022-03-05)
+
+
+### Features
+
+* Add new option `--minifyDeclaration` to minize declatation files ([cfd378e](https://github.com/Randagio13/minimize-js/commit/cfd378e0e782977a4a0bf48fdba95b61aa39162f))
+
 # [1.2.0](https://github.com/Randagio13/minimize-js/compare/v1.1.1...v1.2.0) (2021-12-05)
 
 
