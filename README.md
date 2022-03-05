@@ -39,12 +39,11 @@ yarn add minimize-js -D
 
 ### Options
 
-Minimize JS contains all options by default.
-
 ```bash
- -w --minifyWhitespace     It only removes whitespace characters
- -i --minifyIdentifiers    It only transforms the identifiers
- -s --minifySyntax         It only transforms the syntax
+ -w --minifyWhitespace     It only removes whitespace characters                     #defailt: true
+ -i --minifyIdentifiers    It only transforms the identifiers                        #defailt: true
+ -s --minifySyntax         It only transforms the syntax                             #defailt: true
+ -d --minifyDeclaration    It only removes whitespace characters within .d.ts files  #defailt: false
 ```
 
 ## Usage
@@ -52,7 +51,7 @@ Minimize JS contains all options by default.
 The code snippet below shows how to put into action `minimize-js` and lets you minimize your files inside a directory.
 
 ```bash
-minimize-js <directory>
+minimize-js <directory> -<option> --<option>
 ```
 
 ## Contributors
