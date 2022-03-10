@@ -40,10 +40,10 @@ yarn add minimize-js -D
 ### Options
 
 ```bash
- -w --minifyWhitespace     It only removes whitespace characters                     #defailt: true
- -i --minifyIdentifiers    It only transforms the identifiers                        #defailt: true
- -s --minifySyntax         It only transforms the syntax                             #defailt: true
- -d --minifyDeclaration    It only removes whitespace characters within .d.ts files  #defailt: false
+ -w --minifyWhitespace     It only removes whitespace characters                     #default: true
+ -i --minifyIdentifiers    It only transforms the identifiers                        #default: true
+ -s --minifySyntax         It only transforms the syntax                             #default: true
+ -d --minifyDeclaration    It only removes whitespace characters within .d.ts files  #default: false
 ```
 
 ## Usage
