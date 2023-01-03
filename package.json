@@ -1,7 +1,7 @@
 {
   "name": "minimize-js",
   "description": "Minimize your files without making a bundle",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "main": "lib/index.js",
   "bin": {
     "minimize-js": "lib/index.js"

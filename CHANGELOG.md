@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/Randagio13/minimize-js/compare/v1.3.0...v1.3.1) (2023-01-03)
+
+
+### Performance Improvements
+
+* Add pnpm and update deps ([c9a1d07](https://github.com/Randagio13/minimize-js/commit/c9a1d07f53362e86d08bda01cb9a265ee0ea8126))
+
 # [1.3.0](https://github.com/Randagio13/minimize-js/compare/v1.2.0...v1.3.0) (2022-03-05)
 
 
