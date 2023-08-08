@@ -11,6 +11,7 @@ type Opts = {
   minifyIdentifiers?: boolean
   minifySyntax?: boolean
   minifyDeclaration?: boolean
+  banner?: string
 }
 
 export async function minimization(files: string[], opts: Opts) {

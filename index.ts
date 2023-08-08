@@ -29,6 +29,10 @@ async function run() {
     '-d, --minifyDeclaration',
     'It only transforms the declaration syntax'
   )
+  program.option(
+    '-b, --banner <banner>',
+    'It adds a banner to the top of the js file'
+  )
   await program.parseAsync()
 }
 
