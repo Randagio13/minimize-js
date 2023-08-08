@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/Randagio13/minimize-js/compare/v1.3.1...v1.4.0) (2023-08-08)
+
+
+### Features
+
+* Add banner param ([c6bc00f](https://github.com/Randagio13/minimize-js/commit/c6bc00f4888c13fa160bbdd49791c53f12631b32))
+
 ## [1.3.1](https://github.com/Randagio13/minimize-js/compare/v1.3.0...v1.3.1) (2023-01-03)
 
 
