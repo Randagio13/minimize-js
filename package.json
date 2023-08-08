@@ -16,7 +16,7 @@
     "start": "tsc --watch",
     "test": "jest",
     "debug": "node --inspect ./lib/index.js lib -w -s -d",
-    "build": "tsc -b -v -f",
+    "build": "tsc -b -v -f && pnpm postbuild",
     "postbuild": "node ./lib/index.js lib -w -s -d"
   },
   "repository": {

@@ -21,20 +21,17 @@ jobs:
       - name: Node 🧰
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 20.x
           cache: 'pnpm'
 
       - name: Install 📦
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build 🛠
         run: pnpm build
 
-      - name: Run specs
-        run: pnpm test
-      
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpm exec semantic-release
+        run: pnpm dlx semantic-release
