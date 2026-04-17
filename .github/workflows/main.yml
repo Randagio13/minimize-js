@@ -40,7 +40,7 @@ jobs:
         run: pnpm build
 
       - name: Test
-        run: pnpm test
+        run: pnpm test --coverage
 
       - name: Release
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
