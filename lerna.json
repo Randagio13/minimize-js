@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "npmClient": "pnpm",
+  "useNx": false,
+  "version": "1.4.0",
+  "command": {
+    "version": {
+      "conventionalCommits": true,
+      "preid": "beta"
+    }
+  }
+}
