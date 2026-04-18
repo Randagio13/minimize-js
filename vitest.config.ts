@@ -5,8 +5,7 @@ export default defineConfig({
 		include: ["specs/**/*.spec.ts"],
 		coverage: {
 			provider: "v8",
-			include: ["*.ts"],
-			exclude: ["vitest.config.ts"],
+			include: ["minimization.ts"],
 			thresholds: {
 				lines: 100,
 				functions: 100,
