@@ -1,5 +1,6 @@
-import { exec } from "child_process";
-import { readFileSync } from "fs";
+import { exec } from "node:child_process";
+import { readFileSync } from "node:fs";
+import { expect, test } from "vitest";
 
 test("Minimize lib directory", async () => {
 	const script = `node ./lib/minimization.js lib`;
