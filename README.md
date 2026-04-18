@@ -18,7 +18,7 @@
 [![npm version](https://img.shields.io/npm/v/minimize-js?style=flat-square&color=000&labelColor=000&logo=npm&logoColor=fff)](https://www.npmjs.com/package/minimize-js)
 [![npm downloads](https://img.shields.io/npm/dt/minimize-js?style=flat-square&color=000&labelColor=000)](https://www.npmjs.com/package/minimize-js)
 [![license](https://img.shields.io/npm/l/minimize-js?style=flat-square&color=000&labelColor=000)](LICENSE)
-[![CI](https://img.shields.io/github/actions/workflow/status/Randagio13/minimize-js/main.yml?style=flat-square&color=000&labelColor=000&label=CI)](https://github.com/Randagio13/minimize-js/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/Randagio13/minimize-js/ci.yml?style=flat-square&color=000&labelColor=000&label=CI)](https://github.com/Randagio13/minimize-js/actions)
 
 <br />
 
