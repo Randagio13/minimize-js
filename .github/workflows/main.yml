@@ -1,37 +1,50 @@
-name: Release
+name: CI
+
 on:
   push:
     branches: [main, beta, alpha]
   pull_request:
     branches: [main, beta, alpha]
+
 jobs:
-  release:
-    name: Release
+  ci:
+    name: CI
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v3
-
-      - name: pnpm 🧰
-        uses: pnpm/action-setup@v2.2.2
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          version: 7
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Node 🧰
-        uses: actions/setup-node@v3
+      - name: pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
-          cache: 'pnpm'
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
 
-      - name: Install 📦
-        run: pnpm install --no-frozen-lockfile
+      - name: Install
+        run: pnpm install --frozen-lockfile
 
-      - name: Build 🛠
+      - name: Lint
+        run: pnpm exec biome check .
+
+      - name: Build
         run: pnpm build
 
+      - name: Test
+        run: pnpm test --coverage
+
       - name: Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpm dlx semantic-release
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm lerna version --conventional-commits --yes && pnpm lerna publish from-git --yes

@@ -1,81 +1,177 @@
 <div align="center">
 
-# Minimize JS
-
-### Minimize your files without making a bundle
-
-[![NPM](https://nodei.co/npm/minimize-js.png?compact=true)](https://nodei.co/npm/minimize-js/)
 <br />
-[![](https://img.shields.io/npm/dt/minimize-js.svg?style=flat-square)](https://www.npmjs.com/package/minimize-js)
+
+```
+  ███╗   ███╗██╗███╗   ██╗██╗███╗   ███╗██╗███████╗███████╗      ██╗███████╗
+  ████╗ ████║██║████╗  ██║██║████╗ ████║██║╚══███╔╝██╔════╝      ██║██╔════╝
+  ██╔████╔██║██║██╔██╗ ██║██║██╔████╔██║██║  ███╔╝ █████╗   ████╗██║███████╗
+  ██║╚██╔╝██║██║██║╚██╗██║██║██║╚██╔╝██║██║ ███╔╝  ██╔══╝   ╚═══╝██║╚════██║
+  ██║ ╚═╝ ██║██║██║ ╚████║██║██║ ╚═╝ ██║██║███████╗███████╗      ██║███████║
+  ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚═╝     ╚═╝╚═╝╚══════╝╚══════╝      ╚═╝╚══════╝
+```
+
+**Minimize your JS files post-build — without creating a bundle.**
+
+<br />
+
+[![npm version](https://img.shields.io/npm/v/minimize-js?style=flat-square&color=000&labelColor=000&logo=npm&logoColor=fff)](https://www.npmjs.com/package/minimize-js)
+[![npm downloads](https://img.shields.io/npm/dt/minimize-js?style=flat-square&color=000&labelColor=000)](https://www.npmjs.com/package/minimize-js)
+[![license](https://img.shields.io/npm/l/minimize-js?style=flat-square&color=000&labelColor=000)](LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/Randagio13/minimize-js/main.yml?style=flat-square&color=000&labelColor=000&label=CI)](https://github.com/Randagio13/minimize-js/actions)
+
+<br />
 
 </div>
 
-## Table of contents
+---
 
-1. [Getting started](#getting-started)
-   - [Installation](#installation)
-   - [Options](#options)
-2. [Usage](#usage)
-3. [Contributors](#contributors)
-4. [Need help](#need-help)
-5. [License](#license)
-6. [Sponsor](#sponsor)
+## Overview
 
-## Getting started
+`minimize-js` strips whitespace, rewrites identifiers, and collapses syntax across every file in a directory — powered by [esbuild](https://esbuild.github.io/). No bundling, no module graph, no entry points. Just smaller files.
 
-To get started with this library, you need to install it and add it to your project.
+Perfect as a **post-build step** for libraries that compile TypeScript to CommonJS before publishing.
 
-### Installation
+```bash
+# Before
+dist/index.js   →   42 kB
+# After
+dist/index.js   →   18 kB
+```
 
-Minimize JS is available as an npm package.
+---
+
+## Packages
+
+This project is a monorepo. Two packages, one purpose.
+
+| Package | Description | Install |
+|---------|-------------|---------|
+| [`minimize-js`](./packages/cli) | CLI tool | `npm i -D minimize-js` |
+| [`@minimize-js/core`](./packages/core) | Programmatic API | `npm i @minimize-js/core` |
+
+---
+
+## Installation
 
 ```bash
 # npm
-npm install minimize-js -D
+npm install minimize-js --save-dev
+
+# pnpm
+pnpm add minimize-js -D
 
 # yarn
-yarn add minimize-js -D
+yarn add minimize-js --dev
+```
+
+---
+
+## Usage
+
+### CLI
+
+```bash
+minimize-js <directory> [options]
+```
+
+Run it on your compiled output directory:
+
+```bash
+minimize-js lib
+minimize-js dist --minifyDeclaration
+minimize-js lib --banner "/* Copyright 2024 */"
+```
+
+Combine with your build script in `package.json`:
+
+```json
+{
+  "scripts": {
+    "build": "tsc -b && minimize-js lib"
+  }
+}
 ```
 
 ### Options
 
-```bash
- -w --minifyWhitespace     It only removes whitespace characters                     #default: true
- -i --minifyIdentifiers    It only transforms the identifiers                        #default: true
- -s --minifySyntax         It only transforms the syntax                             #default: true
- -d --minifyDeclaration    It only removes whitespace characters within .d.ts files  #default: false
+| Flag | Alias | Description | Default |
+|------|-------|-------------|---------|
+| `--minifyWhitespace` | `-w` | Remove all whitespace | `true` |
+| `--minifyIdentifiers` | `-i` | Shorten variable names | `true` |
+| `--minifySyntax` | `-s` | Collapse syntax patterns | `true` |
+| `--minifyDeclaration` | `-d` | Minify `.d.ts` files | `false` |
+| `--banner <string>` | `-b` | Prepend a string to each JS file | — |
+
+---
+
+## Programmatic API
+
+Use `@minimize-js/core` directly in your build scripts or tooling:
+
+```typescript
+import { minimization } from '@minimize-js/core'
+
+const results = minimization(['dist/index.js', 'dist/utils.js'], {
+  minifyWhitespace: true,
+  minifyIdentifiers: true,
+  minifySyntax: true,
+  minifyDeclaration: false,
+  banner: '/* my lib v1.0.0 */',
+})
 ```
 
-## Usage
+Returns an array of results — no file I/O, no side effects, fully testable.
 
-The code snippet below shows how to put into action `minimize-js` and lets you minimize your files inside a directory.
+---
 
-```bash
-minimize-js <directory> -<option> --<option>
+## How It Works
+
+```
+your directory
+      │
+      ▼
+  glob *.js
+      │
+      ├──▶  .js files  ──▶  esbuild transformSync  ──▶  write back
+      │
+      └──▶  .d.ts files ──▶  dts-minify  ──▶  write back
 ```
 
-## Contributors
+Shebang lines (`#!/usr/bin/env node`) are preserved automatically.
 
-Any contribution is appreciated. You can get started with the steps below:
+---
 
-1. Fork [this repository](https://github.com/Randagio13/minimize-js) (learn how to do this [here](https://help.github.com/articles/fork-a-repo)).
+## Contributing
 
-2. Clone the forked repository.
+Contributions are welcome. Fork → branch → PR.
 
-3. Make your changes and create a pull request ([learn how to do this](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)).
+```bash
+git clone https://github.com/Randagio13/minimize-js
+cd minimize-js
+pnpm install
+pnpm build
+pnpm test
+```
 
-4. I will attend to your pull request and provide some feedback.
+Commits follow [Conventional Commits](https://www.conventionalcommits.org/) — this drives automatic versioning via Lerna.
 
-## Need help?
+```
+feat: add new option
+fix: handle edge case in shebang detection
+chore: update deps
+```
 
-Ping me [on Twitter](https://twitter.com/randagio19)
+---
 
 ## License
 
-This repository is licensed under the [MIT](LICENSE) License.
+[MIT](LICENSE) — Alessandro Casazza
 
-## Sponsor
+---
 
-Don't be shy! 😜
+<div align="center">
 
-[:heart: Sponsor](https://github.com/sponsors/Randagio13)
+[:heart: Sponsor this project](https://github.com/sponsors/Randagio13)
+
+</div>
