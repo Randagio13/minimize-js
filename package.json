@@ -14,7 +14,7 @@
 	],
 	"scripts": {
 		"start": "tsc --watch",
-		"test": "jest",
+		"test": "vitest run",
 		"debug": "node --inspect ./lib/index.js lib -w -s -d",
 		"build": "tsc -b -v -f && pnpm postbuild",
 		"postbuild": "node ./lib/index.js lib -w -s -d",
@@ -42,13 +42,15 @@
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.12",
 		"@types/node": "^20.4.8",
+		"@vitest/coverage-v8": "^4.1.4",
 		"lerna": "^9.0.7",
-		"typescript": "^5.1.6"
+		"typescript": "^5.1.6",
+		"vitest": "^4.1.4"
 	},
 	"dependencies": {
 		"commander": "^11.0.0",
 		"dts-minify": "^0.3.2",
-		"esbuild": "^0.18.20",
+		"esbuild": "^0.28.0",
 		"glob": "^10.3.3",
 		"pretty-bytes": "^6.1.1",
 		"progress-barjs": "^2.2.1",
