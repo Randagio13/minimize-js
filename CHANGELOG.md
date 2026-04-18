@@ -1,3 +1,30 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.4.1](https://github.com/Randagio13/minimize-js/compare/v1.4.0...v1.4.1) (2026-04-18)
+
+
+### Bug Fixes
+
+* Rename version script to release to avoid lerna recursion ([98b9888](https://github.com/Randagio13/minimize-js/commit/98b9888cbae293099470073a7ed4b3f5f46d1bad))
+
+
+
+
+
+## [1.4.1](https://github.com/Randagio13/minimize-js/compare/v1.4.0...v1.4.1) (2026-04-18)
+
+
+### Bug Fixes
+
+* Rename version script to release to avoid lerna recursion ([98b9888](https://github.com/Randagio13/minimize-js/commit/98b9888cbae293099470073a7ed4b3f5f46d1bad))
+
+
+
+
+
 # [1.4.0](https://github.com/Randagio13/minimize-js/compare/v1.3.1...v1.4.0) (2023-08-08)
 
 
